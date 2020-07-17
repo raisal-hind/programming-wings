@@ -178,8 +178,8 @@ def TrackImages():
                 attendance.loc[len(attendance)] = [Id,aa,date,timeStamp]
                 
             else:
-                Id=(text.get())
-                name=(text2.get())           
+                Id=(txt.get())
+                name=(txt2.get())           
                 tt=Id+name
             if(conf > 75):
                 noOfFile=len(os.listdir("ImagesUnknown"))+1

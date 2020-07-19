@@ -178,9 +178,8 @@ def TrackImages():
                 attendance.loc[len(attendance)] = [Id,aa,date,timeStamp]
                 
             else:
-                Id=(txt.get())
-                name=(txt2.get())           
-                tt=Id+name
+                Id="unknown"        
+                tt=str(Id)
             if(conf > 75):
                 noOfFile=len(os.listdir("ImagesUnknown"))+1
                 cv2.imwrite("ImagesUnknown\Image"+str(noOfFile) + ".jpg", im[y:y+h,x:x+w])            

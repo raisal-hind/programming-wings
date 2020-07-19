@@ -176,10 +176,13 @@ def TrackImages():
                 aa=df.loc[df['Id'] == Id]['Name'].values
                 tt=str(Id)+"-"+aa
                 attendance.loc[len(attendance)] = [Id,aa,date,timeStamp]
-                
+                print("1")
+                print(conf)
             else:
                 Id="unknown"        
                 tt=str(Id)
+                print("2")
+                print(conf)
             if(conf > 75):
                 noOfFile=len(os.listdir("ImagesUnknown"))+1
                 cv2.imwrite("ImagesUnknown\Image"+str(noOfFile) + ".jpg", im[y:y+h,x:x+w])            

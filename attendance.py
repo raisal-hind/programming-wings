@@ -169,21 +169,21 @@ def TrackImages():
         for(x,y,w,h) in faces:
             cv2.rectangle(im,(x,y),(x+w,y+h),(225,0,0),2)
             Id, conf = recognizer.predict(gray[y:y+h,x:x+w])                                   
-            if(conf < 50):
+            if(conf > 70):
                 ts = time.time()      
                 date = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
                 timeStamp = datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S')
                 aa=df.loc[df['Id'] == Id]['Name'].values
                 tt=str(Id)+"-"+aa
                 attendance.loc[len(attendance)] = [Id,aa,date,timeStamp]
-                print("1")
                 print(conf)
+
             else:
                 Id="unknown"        
                 tt=str(Id)
-                print("2")
-                print(conf)
-            if(conf > 75):
+                
+               
+            if(conf < 50):
                 noOfFile=len(os.listdir("ImagesUnknown"))+1
                 cv2.imwrite("ImagesUnknown\Image"+str(noOfFile) + ".jpg", im[y:y+h,x:x+w])            
             cv2.putText(im,str(tt),(x,y+h), font, 1,(255,255,255),2)        

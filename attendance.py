@@ -1,8 +1,6 @@
 import face_recognition
 import dlib
-#import xlwrite,firebase.firebase_ini as fire;
 from playsound import playsound
-#from cx_Freeze import setup, Executable
 import numpy as np
 import sys
 import os
@@ -168,7 +166,9 @@ def TrackImages():
         faces=faceCascade.detectMultiScale(gray, 1.2,5)    
         for(x,y,w,h) in faces:
             cv2.rectangle(im,(x,y),(x+w,y+h),(225,0,0),2)
-            Id, conf = recognizer.predict(gray[y:y+h,x:x+w])                                   
+            Id, conf = recognizer.predict(gray[y:y+h,x:x+w])      
+            print("1")   
+            print(conf)                          
             if(conf > 70):
                 ts = time.time()      
                 date = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
@@ -176,7 +176,9 @@ def TrackImages():
                 aa=df.loc[df['Id'] == Id]['Name'].values
                 tt=str(Id)+"-"+aa
                 attendance.loc[len(attendance)] = [Id,aa,date,timeStamp]
+                print('2')
                 print(conf)
+                cv2.imshow('im',im)
 
             else:
                 Id="unknown"        
@@ -217,7 +219,7 @@ quitWindow = tk.Button(window, text="Quit", command=window.destroy  ,fg="blue"  
 quitWindow.place(x=1050, y=500)
 copyWrite = tk.Text(window, background=window.cget("background"), borderwidth=0,font=('times', 30, 'italic bold underline'))
 copyWrite.tag_configure("superscript", offset=10)
-copyWrite.insert("insert", "Developed by Raisalhind..B.E","", "TEAM", "superscript")
+copyWrite.insert("insert", "Developed by Raisalhind..B.E")
 copyWrite.configure(state="disabled",fg="red"  )
 copyWrite.pack(side="left")
 copyWrite.place(x=800, y=750)

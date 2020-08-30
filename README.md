@@ -1,4 +1,4 @@
-# programming-wings
+# face_recognition on image based attendance system
 
 make confirm about all the packages are installed in your computer or not
 
